@@ -2,14 +2,15 @@
 import sys
 import re
 import argparse
+import urllib.parse
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
-BASE_URL = 'https://lore.kernel.org/'
+BASE_URL = 'https://lore.kernel.org/all/?q='
 
 
-def get_links(subsys, title):
-    url = BASE_URL + subsys + '/'
+def get_links(title):
+    url = BASE_URL + urllib.parse.quote(title)
     page = urlopen(url)
     html = page.read().decode("utf-8")
     soup = BeautifulSoup(html, "html.parser")
@@ -21,12 +22,10 @@ def main():
         prog='lore.py',
         description='Get Message-IDs for patches on lore.kernel.org'
         )
-    parser.add_argument('-l', '--list', dest='list', default='linux-btrfs',
-                        help='mailinglist, default: linux-btrfs', type=str)
     parser.add_argument("title")
     args = parser.parse_args()
 
-    links = get_links(args.list, args.title)
+    links = get_links(args.title)
     for link in links:
         text = link.get_text()
         href = link.attrs['href']
