@@ -1,4 +1,0 @@
-## The following requirements were added by pip freeze:
-beautifulsoup4==4.12.3
-soupsieve>=2.3
-argparse==1.4.0
