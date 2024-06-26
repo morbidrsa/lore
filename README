@@ -1,4 +1,4 @@
-usage: lore.py [-h] [-l LIST] title
+usage: lore.py [-h] title
 
 Get Message-IDs for patches on lore.kernel.org
 
@@ -6,5 +6,4 @@ positional arguments:
   title
 
 optional arguments:
-  -h, --help            show this help message and exit
-  -l LIST, --list LIST  mailinglist, default: linux-btrfs
+  -h, --help  show this help message and exit
